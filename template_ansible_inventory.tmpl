@@ -1,0 +1,5 @@
+${jsonencode({
+    "all": {
+        "hosts": { for project_machine, domain in generated_machines: domain.name => {} }
+    }
+})}

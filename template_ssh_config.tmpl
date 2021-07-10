@@ -1,0 +1,4 @@
+%{ for project_machine, domain in generated_machines ~}
+Host ${project_machine}
+    Hostname ${domain.name}
+%{ endfor ~}
