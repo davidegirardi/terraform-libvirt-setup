@@ -92,7 +92,7 @@ resource "libvirt_domain" "domain" {
    }
    provisioner "local-exec" {
         command = <<-EOC
-            ansible-playbook -u ${var.os_image_catalog["${each.value.distro}"].ssh_user} -i %{ if replace(self.network_interface[0].addresses[0], ":", "") == self.network_interface[0].addresses[0] }${self.network_interface[0].addresses[0]}%{ else }${self.network_interface[0].addresses[1]}%{ endif}, -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
+            ansible-playbook -u ${var.os_image_catalog["${each.value.distro}"].ansible_user} -i %{ if replace(self.network_interface[0].addresses[0], ":", "") == self.network_interface[0].addresses[0] }${self.network_interface[0].addresses[0]}%{ else }${self.network_interface[0].addresses[1]}%{ endif}, -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
         EOC
    }
 }
