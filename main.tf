@@ -18,14 +18,12 @@ resource "libvirt_network" "project_network" {
     dns {
         local_only = true
     }
-
    provisioner "local-exec" {
         command = <<-EOC
             echo "server=/${self.domain}/${var.dnsmasq_listen}" | sudo tee -a /etc/NetworkManager/dnsmasq.d/libvirtd_dnsmasq.conf
             sudo systemctl reload NetworkManager.service
         EOC
    }
-
    provisioner "local-exec" {
         when = destroy
         command = <<-EOC
@@ -33,7 +31,6 @@ resource "libvirt_network" "project_network" {
             sudo systemctl reload NetworkManager.service
         EOC
    }
-
 }
 
 resource "libvirt_pool" "project_pool" {
@@ -85,7 +82,6 @@ resource "libvirt_domain" "domain" {
     xml {
         xslt = file("add_spice.xsl")
     }
-
    dynamic "filesystem" {
        for_each = each.value.filesystems
        content {
@@ -94,11 +90,9 @@ resource "libvirt_domain" "domain" {
            readonly = filesystem.value["readonly"]
        }
    }
-
    provisioner "local-exec" {
         command = <<-EOC
             ansible-playbook -u ${var.os_image_catalog["${each.value.distro}"].ssh_user} -i %{ if replace(self.network_interface[0].addresses[0], ":", "") == self.network_interface[0].addresses[0] }${self.network_interface[0].addresses[0]}%{ else }${self.network_interface[0].addresses[1]}%{ endif}, -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
         EOC
    }
-
 }
