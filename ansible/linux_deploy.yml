@@ -1,0 +1,8 @@
+- hosts: all
+  become: yes
+  vars_prompt:
+    - name: newhostname
+      prompt: "Input the new hostname"
+      private: no
+  roles:
+  - rename
