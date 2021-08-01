@@ -11,7 +11,7 @@ variable "os_image_catalog" {
     type = map
     default = {
         "arch" = {
-            disk = "arch-2021.06.01-x86_64.qcow2",
+            disk = "arch-2021.08.01-x86_64.qcow2",
             provision_playbook = "linux_deploy.yml"
             ansible_user = "user"
         },
