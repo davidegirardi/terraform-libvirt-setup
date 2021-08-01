@@ -32,12 +32,51 @@ variable "project_machines" {
         lnx1 = {
             memory = 1024,
             vcpu = 1,
+            distro = "debian10"
+            qemu_agent = true
+            filesystems = {
+                main = {
+                    source = "/tmp",
+                    readonly = true
+                }
+            }
+        }
+
+        lnx2 = {
+            memory = 1024,
+            vcpu = 1,
             distro = "arch"
             qemu_agent = true
             filesystems = {
                 main = {
                     source = "/tmp",
-                    readonly = false
+                    readonly = true
+                }
+            }
+        }
+
+        win1 = {
+            memory = 3024,
+            vcpu = 2,
+            distro = "windows10"
+            qemu_agent = true
+            filesystems = {
+                main = {
+                    source = "/tmp",
+                    readonly = true
+                }
+            }
+        }
+
+        win2 = {
+            memory = 3024,
+            vcpu = 2,
+            distro = "windows10"
+            qemu_agent = true
+            filesystems = {
+                main = {
+                    source = "/tmp",
+                    readonly = true
                 }
             }
         }
