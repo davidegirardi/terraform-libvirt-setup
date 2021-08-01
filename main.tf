@@ -42,7 +42,7 @@ resource "libvirt_pool" "project_pool" {
 module "auto_base_volume" {
     source = "./modules/auto_base_volume"
     # From global_config.tf
-    packer_templates_path = var.packer_templates_path
+    templates_path = var.templates_path
     ansible_playbooks = var.ansible_playbooks
     os_image_catalog = var.os_image_catalog
     # From variables.tf

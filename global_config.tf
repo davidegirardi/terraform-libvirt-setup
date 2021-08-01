@@ -1,11 +1,11 @@
 # Global environment configuration
 
-# Set by the TF_VAR_packer_templates_path environment variable
-variable "packer_templates_path" {
-    description = "Path to the template disks built by packer, uses the TF_VAR_packer_templates_path environment variable"
+# Set by the TF_VAR_templates_path environment variable
+variable "templates_path" {
+    description = "Path to the template disks built by packer, uses the TF_VAR_templates_path environment variable"
 }
 
-# Map different OSs to file in the packer_templates_path set above
+# Map different OSs to file in the templates_path set above
 variable "os_image_catalog" {
     description = "Map operating systems to base disk images"
     type = map

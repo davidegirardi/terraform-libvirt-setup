@@ -13,9 +13,9 @@ variable "project_machines" {
     type = map
 }
 
-# Set by the TF_VAR_packer_templates_path environment variable
-variable "packer_templates_path" {
-    description = "Path to the template disks built by packer, uses the TF_VAR_packer_templates_path environment variable"
+# Set by the TF_VAR_templates_path environment variable
+variable "templates_path" {
+    description = "Path to the template disks built by packer, uses the TF_VAR_templates_path environment variable"
 }
 
 # Set by the TF_VAR_ansible_playbooks environment variable

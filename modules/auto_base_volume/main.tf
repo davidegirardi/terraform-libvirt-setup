@@ -12,7 +12,7 @@ locals {
         for machine in var.project_machines:
             machine.distro =>  {
                 base_name = "${var.project_name}_${machine.distro}_base-volume.qcow2"
-                source = "${var.packer_templates_path}/${var.os_image_catalog[machine.distro].disk}"
+                source = "${var.templates_path}/${var.os_image_catalog[machine.distro].disk}"
                 # pool = libvirt_pool.project_pool
             }...
     }
