@@ -108,7 +108,7 @@ resource "libvirt_domain" "domain" {
         type = "qxl"
     }
     xml {
-        xslt = file("add_spice.xsl")
+        xslt = file("xslt/add_spice.xsl")
     }
     # Shared folders
     dynamic "filesystem" {
