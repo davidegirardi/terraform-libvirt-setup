@@ -5,14 +5,14 @@ output "message" {
 
 resource "local_file" "ansible_inventory" {
     filename = "inventory.json"
-    content = templatefile("template_ansible_inventory.tmpl", {
+    content = templatefile("templates/ansible_inventory.tmpl", {
         generated_machines = libvirt_domain.domain
     })
     file_permission = "0644"
 }
 resource "local_file" "ssh_config" {
     filename = "ssh_config.conf"
-    content = templatefile("template_ssh_config.tmpl", {
+    content = templatefile("templates/ssh_config.tmpl", {
         generated_machines = libvirt_domain.domain
     })
     file_permission = "0644"

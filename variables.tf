@@ -29,7 +29,7 @@ variable "project_machines" {
     type = map
     default = {
 
-        lnx1 = {
+        lnx2 = {
             memory = 1024,
             vcpu = 1,
             distro = "debian10"
@@ -42,36 +42,10 @@ variable "project_machines" {
             }
         }
 
-        lnx2 = {
+        lnx1 = {
             memory = 1024,
             vcpu = 1,
-            distro = "arch"
-            qemu_agent = true
-            filesystems = {
-                main = {
-                    source = "/tmp",
-                    readonly = true
-                }
-            }
-        }
-
-        win1 = {
-            memory = 3024,
-            vcpu = 2,
-            distro = "windows10"
-            qemu_agent = true
-            filesystems = {
-                main = {
-                    source = "/tmp",
-                    readonly = true
-                }
-            }
-        }
-
-        win2 = {
-            memory = 3024,
-            vcpu = 2,
-            distro = "windows10"
+            distro = "debian10"
             qemu_agent = true
             filesystems = {
                 main = {
