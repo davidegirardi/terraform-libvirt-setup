@@ -1,11 +1,13 @@
 # Global environment configuration
 
+# Path on the local filesystem for your template qcow2 disks (read only)
 # Set by the TF_VAR_templates_path environment variable
 variable "templates_path" {
     description = "Path to the template disks built by packer, uses the TF_VAR_templates_path environment variable"
 }
 
-# Map different OSs to file in the templates_path set above
+# Map different Operating Systems to files in the templates_path set above
+# The provision_playbook is an ansible playbook to do basic setup
 variable "os_image_catalog" {
     description = "Map operating systems to base disk images"
     type = map
@@ -28,6 +30,7 @@ variable "os_image_catalog" {
     }
 }
 
+# Where are the provisioning playbooks?
 # Set by the TF_VAR_ansible_playbooks environment variable if you want to manage
 # this centrally and not use the default ./ansible/ path
 variable "ansible_playbooks" {
@@ -35,6 +38,8 @@ description = "Path to the ansible playbook directory. Uses the TF_VAR_ansible_p
     default = "./ansible"
 }
 
+# Top level domain for the networks, all the machine will have a name like:
+# vmname.projectname.tld
 variable "network_tld" {
     description = "Network TLD"
     type = string
