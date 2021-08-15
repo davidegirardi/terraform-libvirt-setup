@@ -22,6 +22,11 @@ variable "os_image_catalog" {
             provision_playbook = "linux_deploy.yml"
             ansible_user = "user"
         },
+        "debian11" = {
+            disk = "debian-11.0.0-amd64.qcow2",
+            provision_playbook = "linux_deploy.yml"
+            ansible_user = "user"
+        },
         "windows10" = {
             disk = "windows10-20H2_v2-x86_64.qcow2",
             provision_playbook = "windows_deploy.yml"

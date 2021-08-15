@@ -32,7 +32,7 @@ variable "project_machines" {
         lnx1 = {
             memory = 1024,
             vcpu = 1,
-            distro = "debian10"
+            distro = "debian11"
             qemu_agent = true
             filesystems = {
                 main = {
