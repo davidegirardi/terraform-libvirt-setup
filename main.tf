@@ -126,4 +126,11 @@ resource "libvirt_domain" "domain" {
              ansible-playbook -u ${var.os_image_catalog["${each.value.distro}"].ansible_user} -i %{ if replace(self.network_interface[0].addresses[0], ":", "") == self.network_interface[0].addresses[0] }${self.network_interface[0].addresses[0]}%{ else }${self.network_interface[0].addresses[1]}%{ endif}, -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
          EOC
     }
+    # Remove the ssh fingerprint from known_hosts
+    provisioner "local-exec" {
+         when = destroy
+         command = <<-EOC
+             ssh-keygen -R ${self.name}
+         EOC
+    }
 }
