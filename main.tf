@@ -94,7 +94,7 @@ resource "libvirt_domain" "domain" {
     vcpu = each.value.vcpu
     machine = "q35"
     qemu_agent = each.value.qemu_agent
-    cpu = {
+    cpu {
         mode = "host-passthrough"
     }
     disk {
