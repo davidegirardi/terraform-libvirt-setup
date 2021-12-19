@@ -1,6 +1,8 @@
 ---
 
 - hosts: all
+  # When re-running the playbook, the built-in administrator will be deactivated
+  ignore_unreachable: yes
   vars:
     ansible_winrm_user: Administrator
     ansible_winrm_password: packerpassword
@@ -13,6 +15,16 @@
         update_password: always
   roles:
     - win_users
+
+- hosts: all
+  vars:
+    ansible_winrm_user: user
+    ansible_winrm_password: "{{ lookup('password', 'credentials/user_initial_password chars=ascii_letters,digits length=32') }}"
+    ansible_connection: winrm
+    ansible_winrm_server_cert_validation: ignore
+  roles:
+    - win_disable_administrator
+    - win_rename
   tasks:
     - name: Firewall rule to allow RDP on TCP port 3389
       community.windows.win_firewall_rule:
@@ -34,14 +46,13 @@
       win_service:
         name: TermService
         start_mode: auto
-
-- hosts: all
-  vars:
-    ansible_winrm_user: user
-    ansible_winrm_password: "{{ lookup('password', 'credentials/user_initial_password chars=ascii_letters,digits length=32') }}"
-    ansible_connection: winrm
-    ansible_winrm_server_cert_validation: ignore
-  roles:
-    - win_disable_administrator
-    - win_rename
-
+    - name: Disable automatic suspend and hibernation
+      win_shell: |
+        powercfg /x -hibernate-timeout-ac 0
+        powercfg /x -hibernate-timeout-dc 0
+        powercfg /x -disk-timeout-ac 0
+        powercfg /x -disk-timeout-dc 0
+        powercfg /x -monitor-timeout-ac 0
+        powercfg /x -monitor-timeout-dc 0
+        Powercfg /x -standby-timeout-ac 0
+        powercfg /x -standby-timeout-dc 0
