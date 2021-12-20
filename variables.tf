@@ -33,7 +33,7 @@ variable "project_machines" {
             memory = 1024,
             vcpu = 1,
             distro = "debian11"
-            qemu_agent = true
+            qemu_agent = false
             filesystems = {
                 main = {
                     source = "/tmp",
@@ -46,7 +46,7 @@ variable "project_machines" {
             memory = 1024,
             vcpu = 1,
             distro = "arch"
-            qemu_agent = true
+            qemu_agent = false
             filesystems = {
                 main = {
                     source = "/tmp",
@@ -59,7 +59,7 @@ variable "project_machines" {
             memory = 3024,
             vcpu = 2,
             distro = "windows10"
-            qemu_agent = true
+            qemu_agent = false
             filesystems = {
                 main = {
                     source = "/tmp",
@@ -72,7 +72,7 @@ variable "project_machines" {
             memory = 3024,
             vcpu = 2,
             distro = "windows10"
-            qemu_agent = true
+            qemu_agent = false
             filesystems = {
                 main = {
                     source = "/tmp",
