@@ -13,17 +13,17 @@ variable "os_image_catalog" {
     type = map
     default = {
         "arch" = {
-            disk = "arch-2021.12.01-x86_64.qcow2",
+            disk = "arch-2022.01.01-x86_64.qcow2",
             provision_playbook = "linux_deploy.yml"
             ansible_user = "user"
         },
         "debian10" = {
-            disk = "debian10-10.10.0-amd64.qcow2",
+            disk = "debian10-10.11.0-amd64.qcow2",
             provision_playbook = "linux_deploy.yml"
             ansible_user = "user"
         },
         "debian11" = {
-            disk = "debian-11.1.0-amd64.qcow2",
+            disk = "debian-11.2.0-amd64.qcow2",
             provision_playbook = "linux_deploy.yml"
             ansible_user = "user"
         },
