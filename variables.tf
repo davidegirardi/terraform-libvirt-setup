@@ -6,12 +6,6 @@ variable "project_name" {
   default     = "testproj"
 }
 
-variable "dnsmasq_listen" {
-  description = "dnsmasq binding address"
-  type        = string
-  default     = "10.11.12.1"
-}
-
 variable "cidr_networks" {
   description = "Network ranges (IPv4 and IPv6) in CIDR format"
   type        = list(any)
