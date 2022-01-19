@@ -34,21 +34,6 @@ resource "libvirt_network" "project_network" {
     dns {
         local_only = true
     }
-    # Configure name resolution in Network Manager, REQUIRES SUDO!
-    provisioner "local-exec" {
-         command = <<-EOC
-             echo "server=/${self.domain}/${var.dnsmasq_listen}" | sudo tee -a /etc/NetworkManager/dnsmasq.d/libvirtd_dnsmasq.conf
-             sudo systemctl reload NetworkManager.service
-         EOC
-    }
-    # Remove name resolution from Network Manager on destroy, REQUIRES SUDO!
-    provisioner "local-exec" {
-         when = destroy
-         command = <<-EOC
-             sudo sed -i '\/server=\/${self.domain}\/.*$/d' /etc/NetworkManager/dnsmasq.d/libvirtd_dnsmasq.conf
-             sudo systemctl reload NetworkManager.service
-         EOC
-    }
 }
 
 #############################################################
@@ -123,7 +108,10 @@ resource "libvirt_domain" "domain" {
     # See: ansible/linux_deploy.yml and ansible/windows_deploy.yml
     provisioner "local-exec" {
          command = <<-EOC
-             ansible-playbook -u ${var.os_image_catalog["${each.value.distro}"].ansible_user} -i %{ if replace(self.network_interface[0].addresses[0], ":", "") == self.network_interface[0].addresses[0] }${self.network_interface[0].addresses[0]}%{ else }${self.network_interface[0].addresses[1]}%{ endif}, -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
+            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \
+              -u ${var.os_image_catalog["${each.value.distro}"].ansible_user} \
+              -i ${self.name}, \
+              -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
          EOC
     }
     # Remove the ssh fingerprint from known_hosts
