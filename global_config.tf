@@ -6,6 +6,10 @@ variable "templates_path" {
   description = "Path to the template disks built by packer, uses the TF_VAR_templates_path environment variable"
 }
 
+variable "pool_prefix" {
+  description = "Path to the directory where to create the project pools, uses the TF_VAR_pool_prefix environment variable"
+}
+
 # Map different Operating Systems to files in the templates_path set above
 # The provision_playbook is an ansible playbook to do basic setup
 variable "os_image_catalog" {

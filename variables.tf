@@ -18,12 +18,6 @@ variable "cidr_networks" {
   default     = ["10.11.12.0/24"]
 }
 
-variable "pool_prefix" {
-  description = "Path to the directory where to create the project pools"
-  type        = string
-  default     = "/home/vms"
-}
-
 variable "project_machines" {
   description = "Map of project names to configuration."
   type        = map(any)
