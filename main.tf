@@ -121,9 +121,4 @@ resource "libvirt_domain" "domain" {
              ssh-keygen -R ${self.name}
          EOC
   }
-  #lifecycle {
-  #  ignore_changes = [
-  #    machine,
-  #  ]
-  #}
 }
