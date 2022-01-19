@@ -112,6 +112,7 @@ resource "libvirt_domain" "domain" {
               -u ${var.os_image_catalog["${each.value.distro}"].ansible_user} \
               -i ${self.name}, \
               -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
+            ssh-keygen -R ${self.name}
          EOC
   }
   # Remove the ssh fingerprint from known_hosts
