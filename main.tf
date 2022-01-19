@@ -79,22 +79,28 @@ resource "libvirt_domain" "domain" {
   vcpu       = each.value.vcpu
   machine    = "q35"
   qemu_agent = each.value.qemu_agent
+
   cpu {
     mode = "host-passthrough"
   }
+
   disk {
     volume_id = libvirt_volume.cow_volume[each.key].id
   }
+
   network_interface {
     network_id     = libvirt_network.project_network.id
     wait_for_lease = true
   }
+
   video {
     type = "qxl"
   }
+
   xml {
     xslt = file("xslt/add_spice.xsl")
   }
+
   # Shared folders
   dynamic "filesystem" {
     for_each = each.value.filesystems
@@ -104,6 +110,7 @@ resource "libvirt_domain" "domain" {
       readonly = filesystem.value["readonly"]
     }
   }
+
   # Deployment playbook: name the machine and do other stuff
   # See: ansible/linux_deploy.yml and ansible/windows_deploy.yml
   provisioner "local-exec" {
@@ -115,6 +122,7 @@ resource "libvirt_domain" "domain" {
             ssh-keygen -R ${self.name}
          EOC
   }
+
   # Remove the ssh fingerprint from known_hosts
   provisioner "local-exec" {
     when    = destroy
@@ -122,4 +130,5 @@ resource "libvirt_domain" "domain" {
              ssh-keygen -R ${self.name}
          EOC
   }
+
 }
