@@ -77,7 +77,6 @@ resource "libvirt_domain" "domain" {
   name       = "${each.key}.${libvirt_network.project_network.domain}"
   memory     = each.value.memory
   vcpu       = each.value.vcpu
-  machine    = "q35"
   qemu_agent = each.value.qemu_agent
 
   cpu {
