@@ -93,7 +93,7 @@ resource "libvirt_domain" "domain" {
   }
 
   video {
-    type = "qxl"
+    type = var.os_image_catalog["${each.value.distro}"].video_type
   }
 
   xml {

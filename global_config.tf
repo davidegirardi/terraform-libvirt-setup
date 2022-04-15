@@ -17,24 +17,28 @@ variable "os_image_catalog" {
   type        = map(any)
   default = {
     "arch" = {
-      disk               = "arch-2022.01.01-x86_64.qcow2",
+      disk               = "arch-2022.04.05-x86_64.qcow2",
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "user"
+      video_type         = "virtio"
     },
     "debian10" = {
-      disk               = "debian10-10.11.0-amd64.qcow2",
+      disk               = "debian-10.11.0-amd64.qcow2",
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "user"
+      video_type         = "virtio"
     },
     "debian11" = {
-      disk               = "debian-11.2.0-amd64.qcow2",
+      disk               = "debian-11.3.0-amd64.qcow2",
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "user"
+      video_type         = "virtio"
     },
     "windows10" = {
-      disk               = "windows10-21H1-x86_64.qcow2",
+      disk               = "windows10-21H2-x86_64.qcow2",
       provision_playbook = "windows_deploy.yml"
       ansible_user       = "administrator"
+      video_type         = "qxl"
     }
   }
 }
