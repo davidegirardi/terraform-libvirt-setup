@@ -59,7 +59,7 @@ variable "project_machines" {
     win2 = {
       memory     = 3024,
       vcpu       = 2,
-      distro     = "windows10"
+      distro     = "windows11"
       qemu_agent = false
       filesystems = {
         main = {

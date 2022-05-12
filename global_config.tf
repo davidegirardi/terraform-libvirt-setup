@@ -40,6 +40,12 @@ variable "os_image_catalog" {
       ansible_user       = "administrator"
       video_type         = "qxl"
     }
+    "windows11" = {
+      disk               = "windows11-v1-x86_64.qcow2",
+      provision_playbook = "windows_deploy.yml"
+      ansible_user       = "administrator"
+      video_type         = "qxl"
+    }
   }
 }
 
