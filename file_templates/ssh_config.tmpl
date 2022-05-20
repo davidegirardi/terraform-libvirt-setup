@@ -1,7 +1,7 @@
-%{ for project_machine, domain in generated_machines ~}
-Host ${project_machine}
+%{ for current_machine, domain in generated_machines ~}
+Host ${current_machine}
     Hostname ${domain.name}
-    User user
+    User ${os_image_catalog["${project_machines["${current_machine}"].distro}"].ansible_user}
 Host ${domain.name}
-    User user
+    User ${os_image_catalog["${project_machines["${current_machine}"].distro}"].ansible_user}
 %{ endfor ~}

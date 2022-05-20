@@ -17,34 +17,42 @@ variable "os_image_catalog" {
   type        = map(any)
   default = {
     "arch" = {
-      disk               = "arch-2022.04.05-x86_64.qcow2",
+      #disk               = "https://ftp.acc.umu.se/mirror/archlinux/images/latest/Arch-Linux-x86_64-cloudimg.qcow2"
+      disk               = "Arch-Linux-x86_64-cloudimg.qcow2"
       provision_playbook = "linux_deploy.yml"
-      ansible_user       = "user"
+      ansible_user       = "arch"
       video_type         = "virtio"
+      cloudinit_template = "file_templates/cloud_init.cfg"
     },
     "debian10" = {
-      disk               = "debian-10.11.0-amd64.qcow2",
+      #disk               = "https://cloud.debian.org/images/cloud/buster/daily/latest/debian-10-generic-amd64-daily.qcow2",
+      disk               = "debian-10-generic-amd64-daily.qcow2",
       provision_playbook = "linux_deploy.yml"
-      ansible_user       = "user"
+      ansible_user       = "debian"
       video_type         = "virtio"
+      cloudinit_template = "file_templates/cloud_init.cfg"
     },
     "debian11" = {
-      disk               = "debian-11.3.0-amd64.qcow2",
-      provision_playbook = "linux_deploy.yml"
-      ansible_user       = "user"
+      #disk              = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-11-generic-amd64-daily.qcow2",
+      disk               = "debian-11-generic-amd64-daily.qcow2",
+      provision_playbook = ""
+      ansible_user       = "debian"
       video_type         = "virtio"
+      cloudinit_template = "file_templates/cloud_init.cfg"
     },
     "windows10" = {
       disk               = "windows10-21H2-x86_64.qcow2",
       provision_playbook = "windows_deploy.yml"
       ansible_user       = "administrator"
       video_type         = "qxl"
+      cloudinit_template = ""
     }
     "windows11" = {
       disk               = "windows11-v1-x86_64.qcow2",
       provision_playbook = "windows_deploy.yml"
       ansible_user       = "administrator"
       video_type         = "qxl"
+      cloudinit_template = ""
     }
   }
 }

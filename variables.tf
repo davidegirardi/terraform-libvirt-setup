@@ -22,6 +22,7 @@ variable "project_machines" {
       vcpu       = 1,
       distro     = "debian11"
       qemu_agent = false
+      disk_size  = 20,
       filesystems = {
         main = {
           source   = "/tmp",
@@ -33,41 +34,28 @@ variable "project_machines" {
     lnx2 = {
       memory     = 1024,
       vcpu       = 1,
+      distro     = "debian11"
+      qemu_agent = false,
+      disk_size  = 20,
+      filesystems = {
+      }
+    }
+
+    lnx3 = {
+      memory     = 1024,
+      vcpu       = 1,
       distro     = "arch"
       qemu_agent = false
+      disk_size  = 20,
       filesystems = {
-        main = {
-          source   = "/tmp",
-          readonly = true
-        }
-      }
-    }
-
-    win1 = {
-      memory     = 3024,
-      vcpu       = 2,
-      distro     = "windows10"
-      qemu_agent = false
-      filesystems = {
-        main = {
-          source   = "/tmp",
-          readonly = true
-        }
-      }
-    }
-
-    win2 = {
-      memory     = 3024,
-      vcpu       = 2,
-      distro     = "windows11"
-      qemu_agent = false
-      filesystems = {
-        main = {
-          source   = "/tmp",
-          readonly = true
-        }
       }
     }
 
   }
+}
+
+variable "ssh_pubkey_file" {
+  description = "File with the SSH public key to install in the machines"
+  type        = string
+  default     = "~/.ssh/id_ed25519.pub"
 }

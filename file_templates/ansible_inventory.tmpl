@@ -1,5 +1,5 @@
 ${jsonencode({
     "all": {
-        "hosts": { for project_machine, domain in generated_machines: domain.name => {} }
+        "hosts": { for current_machine, domain in generated_machines: domain.name => { ansible_user="${os_image_catalog["${project_machines["${current_machine}"].distro}"].ansible_user}"} }
     }
 })}

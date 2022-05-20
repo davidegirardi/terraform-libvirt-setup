@@ -12,8 +12,7 @@ locals {
     for machine in var.project_machines :
     machine.distro => {
       base_name = "${var.project_name}_${machine.distro}_base-volume.qcow2"
-      source    = "${var.templates_path}/${var.os_image_catalog[machine.distro].disk}"
-      # pool = libvirt_pool.project_pool
+      source    = substr("${var.os_image_catalog[machine.distro].disk}", 0, 8) == "https://" ? "${var.os_image_catalog[machine.distro].disk}" : "${var.templates_path}/${var.os_image_catalog[machine.distro].disk}"
     }...
   }
 }
@@ -24,5 +23,6 @@ resource "libvirt_volume" "base_volume" {
   name     = each.value[0].base_name
   source   = each.value[0].source
   pool     = var.project_pool_name
+  format   = "qcow2"
 }
 

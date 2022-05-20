@@ -1,4 +1,13 @@
 - hosts: all
+  tasks:
+    - name: Wait for SSH
+      vars:
+        ansible_connection: local
+      wait_for:
+        port: 22
+        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+
+- hosts: all
   become: yes
   vars_prompt:
     - name: newhostname
@@ -6,3 +15,4 @@
       private: no
   roles:
   - rename
+  - qemu-agent

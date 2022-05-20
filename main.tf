@@ -65,6 +65,23 @@ resource "libvirt_volume" "cow_volume" {
   base_volume_id   = module.auto_base_volume.volumes["${each.value.distro}"].id
   base_volume_pool = libvirt_pool.project_pool.name
   pool             = libvirt_pool.project_pool.name
+  size             = each.value.disk_size * 1024 * 1024 * 1024
+}
+
+##################################
+#                                #
+#    Create cloudinit volumes    #
+#                                #
+##################################
+module "auto_cloudinit" {
+  source = "./modules/auto_cloudinit/"
+  # From global_config.tf
+  os_image_catalog = var.os_image_catalog
+  # From variables.tf
+  project_name      = var.project_name
+  project_machines  = var.project_machines
+  project_pool_name = libvirt_pool.project_pool.name
+  ssh_pubkey        = var.ssh_pubkey_file
 }
 
 #############################
@@ -78,6 +95,7 @@ resource "libvirt_domain" "domain" {
   memory     = each.value.memory
   vcpu       = each.value.vcpu
   qemu_agent = each.value.qemu_agent
+  cloudinit  = var.os_image_catalog["${each.value.distro}"].cloudinit_template != "" ? module.auto_cloudinit.cloudinit_disks["${each.key}"].id : null
 
   cpu {
     mode = "host-passthrough"
@@ -97,7 +115,8 @@ resource "libvirt_domain" "domain" {
   }
 
   xml {
-    xslt = file("xslt/add_spice.xsl")
+    # A serial port is neede by Debian for resizing the disk via cloud-init
+    xslt = file("xslt/add_spice_and_serial.xsl")
   }
 
   # Shared folders
@@ -112,13 +131,14 @@ resource "libvirt_domain" "domain" {
 
   # Deployment playbook: name the machine and do other stuff
   # See: ansible/linux_deploy.yml and ansible/windows_deploy.yml
+  # It can be empty for machines deployes via cloud init
   provisioner "local-exec" {
     command = <<-EOC
-            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \
-              -u ${var.os_image_catalog["${each.value.distro}"].ansible_user} \
-              -i ${self.name}, \
-              -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook}
-            ssh-keygen -R ${self.name}
+          ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \
+            -u ${var.os_image_catalog["${each.value.distro}"].ansible_user} \
+            -i ${self.name}, \
+            -e newhostname=${self.name} ${var.ansible_playbooks}/${var.os_image_catalog[each.value.distro].provision_playbook} \
+          || echo "No ansible playbook supplied :)"
          EOC
   }
 
@@ -128,6 +148,10 @@ resource "libvirt_domain" "domain" {
     command = <<-EOC
              ssh-keygen -R ${self.name}
          EOC
+  }
+
+  timeouts {
+    create = "3m"
   }
 
 }
