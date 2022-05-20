@@ -22,7 +22,7 @@ variable "os_image_catalog" {
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "arch"
       video_type         = "virtio"
-      cloudinit_template = "file_templates/cloud_init.cfg"
+      cloudinit_template = "templates/cloud_init.cfg"
     },
     "debian10" = {
       #disk               = "https://cloud.debian.org/images/cloud/buster/daily/latest/debian-10-generic-amd64-daily.qcow2",
@@ -30,7 +30,7 @@ variable "os_image_catalog" {
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "debian"
       video_type         = "virtio"
-      cloudinit_template = "file_templates/cloud_init.cfg"
+      cloudinit_template = "templates/cloud_init.cfg"
     },
     "debian11" = {
       #disk              = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-11-generic-amd64-daily.qcow2",
@@ -38,7 +38,7 @@ variable "os_image_catalog" {
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
-      cloudinit_template = "file_templates/cloud_init.cfg"
+      cloudinit_template = "templates/cloud_init.cfg"
     },
     "windows10" = {
       disk               = "windows10-21H2-x86_64.qcow2",
