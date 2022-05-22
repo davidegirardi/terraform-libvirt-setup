@@ -16,30 +16,79 @@ variable "os_image_catalog" {
   description = "Map operating systems to base disk images"
   type        = map(any)
   default = {
-    "arch" = {
-      #disk               = "https://ftp.acc.umu.se/mirror/archlinux/images/latest/Arch-Linux-x86_64-cloudimg.qcow2"
+
+    "arch_cloud" = {
+      disk               = "https://ftp.acc.umu.se/mirror/archlinux/images/latest/Arch-Linux-x86_64-cloudimg.qcow2"
+      provision_playbook = "linux_deploy.yml"
+      ansible_user       = "arch"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
+    "arch_cloud_cache" = {
       disk               = "Arch-Linux-x86_64-cloudimg.qcow2"
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "arch"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
     },
-    "debian10" = {
-      #disk               = "https://cloud.debian.org/images/cloud/buster/daily/latest/debian-10-generic-amd64-daily.qcow2",
+
+    "arch_custom" = {
+      disk               = "arch-2022.05.01-x86_64.qcow2"
+      provision_playbook = "linux_deploy.yml"
+      ansible_user       = "arch"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
+    "debian10_cloud" = {
+      disk               = "https://cloud.debian.org/images/cloud/buster/daily/latest/debian-10-generic-amd64-daily.qcow2",
+      provision_playbook = "linux_deploy.yml"
+      ansible_user       = "debian"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
+    "debian10_cloud_cache" = {
       disk               = "debian-10-generic-amd64-daily.qcow2",
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "debian"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
     },
-    "debian11" = {
-      #disk              = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-11-generic-amd64-daily.qcow2",
+
+    "debian10_custom" = {
+      disk               = "debian-10.11.0-amd64.qcow2",
+      provision_playbook = "linux_deploy.yml"
+      ansible_user       = "debian"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
+    "debian11_cloud" = {
+      disk               = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-11-generic-amd64-daily.qcow2",
+      provision_playbook = ""
+      ansible_user       = "debian"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
+    "debian11_cloud_cache" = {
       disk               = "debian-11-generic-amd64-daily.qcow2",
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
     },
+
+    "debian11_custom" = {
+      disk               = "debian-11.3.0-amd64.qcow2",
+      provision_playbook = ""
+      ansible_user       = "debian"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
     "windows10" = {
       disk               = "windows10-21H2-x86_64.qcow2",
       provision_playbook = "windows_deploy.yml"
@@ -47,6 +96,7 @@ variable "os_image_catalog" {
       video_type         = "qxl"
       cloudinit_template = ""
     }
+
     "windows11" = {
       disk               = "windows11-v1-x86_64.qcow2",
       provision_playbook = "windows_deploy.yml"
@@ -54,6 +104,7 @@ variable "os_image_catalog" {
       video_type         = "qxl"
       cloudinit_template = ""
     }
+
   }
 }
 
