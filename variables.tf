@@ -1,7 +1,7 @@
 # Project configuration
 
 variable "project_name" {
-  description = "Commont prefix used by all the VMs"
+  description = "Common prefix used by all the VMs"
   type        = string
   default     = "testproj"
 }
