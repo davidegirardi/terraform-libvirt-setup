@@ -17,7 +17,7 @@ resource "null_resource" "get_images" {
   }
   provisioner "local-exec" {
     command = <<-EOC
-      wget --quiet --continue ${each.value.disk}
+      wget --quiet ${each.value.disk} -O ${var.templates_path}/${basename(each.value.disk)}
    EOC
   }
 }
