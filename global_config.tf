@@ -19,7 +19,7 @@ variable "os_image_catalog" {
 
     "arch_cloud" = {
       disk               = "https://ftp.acc.umu.se/mirror/archlinux/images/latest/Arch-Linux-x86_64-cloudimg.qcow2"
-      provision_playbook = "linux_deploy.yml"
+      provision_playbook = ""
       ansible_user       = "arch"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
@@ -27,14 +27,14 @@ variable "os_image_catalog" {
 
     "arch_cloud_cache" = {
       disk               = "Arch-Linux-x86_64-cloudimg.qcow2"
-      provision_playbook = "linux_deploy.yml"
+      provision_playbook = ""
       ansible_user       = "arch"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
     },
 
     "arch_custom" = {
-      disk               = "arch-2022.05.01-x86_64.qcow2"
+      disk               = "arch-2022.08.05-x86_64.qcow2"
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "user"
       video_type         = "virtio"
@@ -43,7 +43,7 @@ variable "os_image_catalog" {
 
     "debian10_cloud" = {
       disk               = "https://cloud.debian.org/images/cloud/buster/daily/latest/debian-10-generic-amd64-daily.qcow2",
-      provision_playbook = "linux_deploy.yml"
+      provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
@@ -51,7 +51,7 @@ variable "os_image_catalog" {
 
     "debian10_cloud_cache" = {
       disk               = "debian-10-generic-amd64-daily.qcow2",
-      provision_playbook = "linux_deploy.yml"
+      provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
@@ -82,7 +82,7 @@ variable "os_image_catalog" {
     },
 
     "debian11_custom" = {
-      disk               = "debian-11.3.0-amd64.qcow2",
+      disk               = "debian-11.4.0-amd64.qcow2",
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "user"
       video_type         = "virtio"
