@@ -89,14 +89,6 @@ variable "os_image_catalog" {
       cloudinit_template = ""
     },
 
-    "ubuntu1604_server_cloud" = {
-      disk               = "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img",
-      provision_playbook = ""
-      ansible_user       = "ubuntu"
-      video_type         = "virtio"
-      cloudinit_template = "templates/cloud_init.cfg"
-    },
-
     "ubuntu_server_cloud" = {
       disk               = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img",
       provision_playbook = ""
