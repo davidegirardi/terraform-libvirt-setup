@@ -34,7 +34,7 @@ variable "os_image_catalog" {
     },
 
     "arch_custom" = {
-      disk               = "arch-2022.08.05-x86_64.qcow2"
+      disk               = "arch-2022.12.01-x86_64.qcow2"
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "user"
       video_type         = "virtio"
@@ -82,7 +82,7 @@ variable "os_image_catalog" {
     },
 
     "debian11_custom" = {
-      disk               = "debian-11.4.0-amd64.qcow2",
+      disk               = "debian-11.6.0-amd64.qcow2",
       provision_playbook = "linux_deploy.yml"
       ansible_user       = "user"
       video_type         = "virtio"
