@@ -130,8 +130,8 @@ resource "libvirt_domain" "domain" {
   }
 
   # Deployment playbook: name the machine and do other stuff
-  # See: ansible/linux_deploy.yml and ansible/windows_deploy.yml
-  # It can be empty for machines deployes via cloud init
+  # See ansible/windows_deploy.yml
+  # It can be empty for machines deployed via cloud init
   provisioner "local-exec" {
     command = <<-EOC
           ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \

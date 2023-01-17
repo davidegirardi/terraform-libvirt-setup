@@ -34,11 +34,11 @@ variable "os_image_catalog" {
     },
 
     "arch_custom" = {
-      disk               = "arch-2022.12.01-x86_64.qcow2"
-      provision_playbook = "linux_deploy.yml"
-      ansible_user       = "user"
+      disk               = "arch-2023.01.01-x86_64.qcow2"
+      provision_playbook = ""
+      ansible_user       = "arch"
       video_type         = "virtio"
-      cloudinit_template = ""
+      cloudinit_template = "templates/cloud_init.cfg"
     },
 
     "debian10_cloud" = {
@@ -58,11 +58,11 @@ variable "os_image_catalog" {
     },
 
     "debian10_custom" = {
-      disk               = "debian-10.11.0-amd64.qcow2",
-      provision_playbook = "linux_deploy.yml"
-      ansible_user       = "user"
+      disk               = "debian-10.13.0-amd64.qcow2",
+      provision_playbook = ""
+      ansible_user       = "debian"
       video_type         = "virtio"
-      cloudinit_template = ""
+      cloudinit_template = "templates/cloud_init.cfg"
     },
 
     "debian11_cloud" = {
@@ -83,10 +83,10 @@ variable "os_image_catalog" {
 
     "debian11_custom" = {
       disk               = "debian-11.6.0-amd64.qcow2",
-      provision_playbook = "linux_deploy.yml"
-      ansible_user       = "user"
+      provision_playbook = ""
+      ansible_user       = "debian"
       video_type         = "virtio"
-      cloudinit_template = ""
+      cloudinit_template = "templates/cloud_init.cfg"
     },
 
     "ubuntu_server_cloud" = {
