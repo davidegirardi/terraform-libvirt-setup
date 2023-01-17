@@ -146,7 +146,8 @@ resource "libvirt_domain" "domain" {
   provisioner "local-exec" {
     when    = destroy
     command = <<-EOC
-             ssh-keygen -R ${self.name}
+              sleep $[ ($RANDOM % 3) ]s
+              ssh-keygen -R ${self.name}
          EOC
   }
 
