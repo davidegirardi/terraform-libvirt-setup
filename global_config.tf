@@ -41,30 +41,6 @@ variable "os_image_catalog" {
       cloudinit_template = "templates/cloud_init.cfg"
     },
 
-    "debian10_cloud" = {
-      disk               = "https://cloud.debian.org/images/cloud/buster/daily/latest/debian-10-generic-amd64-daily.qcow2",
-      provision_playbook = ""
-      ansible_user       = "debian"
-      video_type         = "virtio"
-      cloudinit_template = "templates/cloud_init.cfg"
-    },
-
-    "debian10_cloud_cache" = {
-      disk               = "debian-10-generic-amd64-daily.qcow2",
-      provision_playbook = ""
-      ansible_user       = "debian"
-      video_type         = "virtio"
-      cloudinit_template = "templates/cloud_init.cfg"
-    },
-
-    "debian10_custom" = {
-      disk               = "debian-10.13.0-amd64.qcow2",
-      provision_playbook = ""
-      ansible_user       = "debian"
-      video_type         = "virtio"
-      cloudinit_template = "templates/cloud_init.cfg"
-    },
-
     "debian11_cloud" = {
       disk               = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-11-generic-amd64-daily.qcow2",
       provision_playbook = ""
