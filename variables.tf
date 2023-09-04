@@ -20,7 +20,7 @@ variable "project_machines" {
     lnx1 = {
       memory     = 1024,
       vcpu       = 1,
-      distro     = "debian11_cloud"
+      distro     = "debian_cloud"
       qemu_agent = false
       disk_size  = 20,
       filesystems = {
@@ -34,7 +34,7 @@ variable "project_machines" {
     lnx2 = {
       memory     = 1024,
       vcpu       = 1,
-      distro     = "debian11_cloud"
+      distro     = "debian_cloud"
       qemu_agent = false,
       disk_size  = 20,
       filesystems = {
