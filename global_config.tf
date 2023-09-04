@@ -34,31 +34,31 @@ variable "os_image_catalog" {
     },
 
     "arch_custom" = {
-      disk               = "arch-2023.01.01-x86_64.qcow2"
+      disk               = "arch-2023.09.01-x86_64.qcow2"
       provision_playbook = ""
       ansible_user       = "arch"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
     },
 
-    "debian11_cloud" = {
-      disk               = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-11-generic-amd64-daily.qcow2",
+    "debian_cloud" = {
+      disk               = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-12-generic-amd64-daily.qcow2",
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
     },
 
-    "debian11_cloud_cache" = {
-      disk               = "debian-11-generic-amd64-daily.qcow2",
+    "debian_cloud_cache" = {
+      disk               = "debian-12-generic-amd64-daily.qcow2",
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
       cloudinit_template = "templates/cloud_init.cfg"
     },
 
-    "debian11_custom" = {
-      disk               = "debian-11.6.0-amd64.qcow2",
+    "debian_custom" = {
+      disk               = "debian-12.1.0-amd64.qcow2",
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
@@ -66,7 +66,7 @@ variable "os_image_catalog" {
     },
 
     "ubuntu_server_cloud" = {
-      disk               = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img",
+      disk               = "https://cloud-images.ubuntu.com/lunar/current/jammy-server-cloudimg-amd64-disk-kvm.img",
       provision_playbook = ""
       ansible_user       = "ubuntu"
       video_type         = "virtio"
@@ -74,7 +74,7 @@ variable "os_image_catalog" {
     },
 
     "ubuntu_server_cloud_cache" = {
-      disk               = "jammy-server-cloudimg-amd64-disk-kvm.img",
+      disk               = "lunar-server-cloudimg-amd64-disk-kvm.img",
       provision_playbook = ""
       ansible_user       = "ubuntu"
       video_type         = "virtio"
