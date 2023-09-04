@@ -42,7 +42,7 @@ variable "os_image_catalog" {
     },
 
     "debian_cloud" = {
-      disk               = "https://cloud.debian.org/images/cloud/bullseye/daily/latest/debian-12-generic-amd64-daily.qcow2",
+      disk               = "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2",
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
@@ -66,7 +66,7 @@ variable "os_image_catalog" {
     },
 
     "ubuntu_server_cloud" = {
-      disk               = "https://cloud-images.ubuntu.com/lunar/current/jammy-server-cloudimg-amd64-disk-kvm.img",
+      disk               = "https://cloud-images.ubuntu.com/lunar/current/lunar-server-cloudimg-amd64-disk-kvm.img",
       provision_playbook = ""
       ansible_user       = "ubuntu"
       video_type         = "virtio"
