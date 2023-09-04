@@ -42,7 +42,7 @@ variable "os_image_catalog" {
     },
 
     "debian_cloud" = {
-      disk               = "https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.qcow2",
+      disk               = "https://cloud.debian.org/images/cloud/bookworm/daily/latest/debian-12-generic-amd64-daily.qcow2",
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
