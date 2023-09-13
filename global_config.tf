@@ -65,6 +65,22 @@ variable "os_image_catalog" {
       cloudinit_template = "templates/cloud_init.cfg"
     },
 
+    "fedora_cloud" = {
+      disk               = "https://download.fedoraproject.org/pub/fedora/linux/releases/38/Cloud/x86_64/images/Fedora-Cloud-Base-38-1.6.x86_64.qcow2",
+      provision_playbook = ""
+      ansible_user       = "fedora"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
+    "fedora_cloud_cache" = {
+      disk               = "Fedora-Cloud-Base-38-1.6.x86_64.qcow2",
+      provision_playbook = ""
+      ansible_user       = "fedora"
+      video_type         = "virtio"
+      cloudinit_template = "templates/cloud_init.cfg"
+    },
+
     "ubuntu_server_cloud" = {
       disk               = "https://cloud-images.ubuntu.com/lunar/current/lunar-server-cloudimg-amd64-disk-kvm.img",
       provision_playbook = ""
