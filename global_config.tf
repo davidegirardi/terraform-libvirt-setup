@@ -82,7 +82,7 @@ variable "os_image_catalog" {
     },
 
     "ubuntu_server_cloud" = {
-      disk               = "https://cloud-images.ubuntu.com/lunar/current/lunar-server-cloudimg-amd64-disk-kvm.img",
+      disk               = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img",
       provision_playbook = ""
       ansible_user       = "ubuntu"
       video_type         = "virtio"
@@ -90,7 +90,7 @@ variable "os_image_catalog" {
     },
 
     "ubuntu_server_cloud_cache" = {
-      disk               = "lunar-server-cloudimg-amd64-disk-kvm.img",
+      disk               = "noble-server-cloudimg-amd64.img",
       provision_playbook = ""
       ansible_user       = "ubuntu"
       video_type         = "virtio"
