@@ -32,6 +32,7 @@ resource "libvirt_network" "project_network" {
   addresses = var.cidr_networks
   autostart = true
   dns {
+    enabled    = true
     local_only = true
   }
 }
