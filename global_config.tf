@@ -98,7 +98,7 @@ variable "os_image_catalog" {
     },
 
     "windows10" = {
-      disk               = "windows10-21H2-x86_64.qcow2",
+      disk               = "windows10-22H2-x86_64v1.qcow2",
       provision_playbook = "windows_deploy.yml"
       ansible_user       = "administrator"
       video_type         = "qxl"
