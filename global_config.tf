@@ -34,7 +34,7 @@ variable "os_image_catalog" {
     },
 
     "arch_custom" = {
-      disk               = "arch-2024.03.01-x86_64.qcow2"
+      disk               = "arch-2024.06.01-x86_64.qcow2"
       provision_playbook = ""
       ansible_user       = "arch"
       video_type         = "virtio"
