@@ -34,7 +34,7 @@ variable "os_image_catalog" {
     },
 
     "arch_custom" = {
-      disk               = "arch-2024.10.01-x86_64.qcow2"
+      disk               = "arch-custom-x86_64.qcow2"
       provision_playbook = ""
       ansible_user       = "arch"
       video_type         = "virtio"
@@ -58,7 +58,7 @@ variable "os_image_catalog" {
     },
 
     "debian_custom" = {
-      disk               = "debian-12.7.0-amd64.qcow2",
+      disk               = "debian-custom-amd64.qcow2",
       provision_playbook = ""
       ansible_user       = "debian"
       video_type         = "virtio"
@@ -98,7 +98,7 @@ variable "os_image_catalog" {
     },
 
     "windows10" = {
-      disk               = "windows10-22H2-x86_64v1.qcow2",
+      disk               = "windows10-custom-x86_64.qcow2",
       provision_playbook = "windows_deploy.yml"
       ansible_user       = "administrator"
       video_type         = "qxl"
@@ -106,7 +106,7 @@ variable "os_image_catalog" {
     }
 
     "windows11" = {
-      disk               = "windows11-v1-x86_64.qcow2",
+      disk               = "windows11-custom-x86_64.qcow2",
       provision_playbook = "windows_deploy.yml"
       ansible_user       = "administrator"
       video_type         = "qxl"
