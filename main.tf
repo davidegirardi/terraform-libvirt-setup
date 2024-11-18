@@ -18,7 +18,9 @@ provider "libvirt" {
 resource "libvirt_pool" "project_pool" {
   name = var.project_name
   type = "dir"
-  path = "${var.pool_prefix}/${var.project_name}"
+  target {
+    path = "${var.pool_prefix}/${var.project_name}"
+  }
 }
 
 ##################################################
